@@ -1,0 +1,86 @@
+/* App-specific styles */
+
+/* Smooth scrolling for the entire app */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure sections stack properly */
+.section-pinned {
+  will-change: transform;
+}
+
+/* Neon border animation */
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(182, 255, 46, 0.25),
+      0 0 40px rgba(182, 255, 46, 0.15);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px rgba(182, 255, 46, 0.4),
+      0 0 60px rgba(182, 255, 46, 0.25);
+  }
+}
+
+.neon-border {
+  animation: neon-pulse 3s ease-in-out infinite;
+}
+
+/* Glass card hover effect */
+.glass-card {
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(182, 255, 46, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Button hover effects */
+.btn-primary,
+.btn-outline {
+  transition: all 0.3s ease;
+}
+
+/* Coin float animation enhancement */
+@keyframes coin-float {
+  0%, 100% {
+    transform: translateY(0) rotateY(-20deg);
+  }
+  50% {
+    transform: translateY(-15px) rotateY(-10deg);
+  }
+}
+
+.animate-float {
+  animation: coin-float 4s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-pinned {
+    height: auto;
+    min-height: 0;
+  }
+  
+  .neon-border {
+    width: 85vw !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-float {
+    animation: none;
+  }
+}
