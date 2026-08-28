@@ -4,6 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes incubator-world-drift {
+  0% { transform: scale(1.035) translate3d(-0.35%, -0.25%, 0); }
+  50% { transform: scale(1.055) translate3d(0.35%, 0.2%, 0); }
+  100% { transform: scale(1.04) translate3d(-0.15%, 0.35%, 0); }
+}
+
+.incubator-world-motion {
+  animation: incubator-world-drift 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .incubator-world-motion { animation: none; }
+}
+
 @layer base {
   :root {
     --development-banner-height: 36px;

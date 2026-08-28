@@ -19,13 +19,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
   };
 
   return (
-    <section className={`hero-section section-pinned relative min-h-screen overflow-hidden bg-dark ${className}`}>
-      <img
-        src="/satoshi-hub-cinematic-hero.png"
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover object-center"
-        aria-hidden="true"
-      />
+    <section className={`hero-section section-pinned relative min-h-screen overflow-hidden bg-transparent ${className}`}>
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.34)_100%)]" />
 

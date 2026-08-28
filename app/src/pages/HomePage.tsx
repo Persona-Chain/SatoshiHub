@@ -62,7 +62,16 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div ref={mainRef} className="relative">
+    <div ref={mainRef} className="relative isolate">
+      <div className="fixed inset-0 -z-10 overflow-hidden bg-dark" aria-hidden="true">
+        <img
+          src="/satoshi-hub-cinematic-hero.png"
+          alt=""
+          className="incubator-world-motion h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/25 to-black/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.42)_100%)]" />
+      </div>
       <HeroSection className="z-10" />
       <FeatureSection className="z-20" />
       <ContactSection className="z-30" />

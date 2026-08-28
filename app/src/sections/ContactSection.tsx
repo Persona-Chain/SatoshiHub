@@ -87,7 +87,7 @@ const ContactSection = ({ className = '' }: ContactSectionProps) => {
   return (
     <section
       ref={sectionRef}
-      className={`relative bg-dark-light min-h-screen py-24 ${className}`}
+      className={`relative bg-black/65 backdrop-blur-[2px] min-h-screen py-24 ${className}`}
     >
       {/* Background Grid */}
       <div className="absolute inset-0 opacity-[0.05]">
