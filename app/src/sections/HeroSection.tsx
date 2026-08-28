@@ -1,227 +1,68 @@
-import { useEffect, useRef, useLayoutEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight } from 'lucide-react';
-import { useIsMobile } from '../hooks/use-mobile';
+import { ArrowDown, ArrowRight } from 'lucide-react';
 import { useNodeClock } from '../hooks/use-node-clock';
 import { formatCountdown, getIncubatingNode } from '../lib/nodes';
 
-gsap.registerPlugin(ScrollTrigger);
+interface HeroSectionProps { className?: string }
 
-interface HeroSectionProps {
-  className?: string;
-}
-
-const STATS = [
-  { value: '1M+', label: 'Wallets Created' },
-  { value: '$4.2B', label: 'Trading Volume' },
-  { value: '180+', label: 'Countries' },
-];
+const TIME_LABELS = ['DAYS', 'HRS', 'MIN', 'SEC'] as const;
 
 const HeroSection = ({ className = '' }: HeroSectionProps) => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const coinRef = useRef<HTMLImageElement>(null);
-  const headlineRef = useRef<HTMLDivElement>(null);
-  const subheadlineRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile();
   const now = useNodeClock();
   const incubatingNode = getIncubatingNode(now);
+  const countdown = incubatingNode?.revealAt
+    ? formatCountdown(incubatingNode.revealAt, now).split(' : ').map((part) => part.slice(0, -1))
+    : [];
 
-  // Entrance animation
-  useEffect(() => {
-    if (isMobile) return;
-
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      tl.fromTo(
-        coinRef.current,
-        { scale: 0.6, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1.1 }
-      )
-        .fromTo(
-          headlineRef.current?.querySelectorAll('.headline-line') ?? [],
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.65, stagger: 0.1 },
-          '-=0.6'
-        )
-        .fromTo(
-          subheadlineRef.current,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.55 },
-          '-=0.35'
-        )
-        .fromTo(
-          ctaRef.current,
-          { y: 20, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5 },
-          '-=0.35'
-        )
-        .fromTo(
-          statsRef.current?.querySelectorAll('.stat-item') ?? [],
-          { x: 30, opacity: 0 },
-          { x: 0, opacity: 1, duration: 0.5, stagger: 0.1 },
-          '-=0.5'
-        );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, [isMobile]);
-
-  // Scroll-driven exit
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const ctx = gsap.context(() => {
-      const scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: '+=130%',
-          pin: !isMobile, // Disable pin on mobile
-          scrub: 0.6,
-          onLeaveBack: () => {
-            gsap.set(
-              [coinRef.current, headlineRef.current, subheadlineRef.current, ctaRef.current, statsRef.current],
-              { opacity: 1, x: 0, y: 0, scale: 1 }
-            );
-          },
-        },
-      });
-
-      scrollTl.fromTo(
-        coinRef.current,
-        { scale: 1, opacity: 1 },
-        { scale: 0.5, opacity: 0, ease: 'power2.in' },
-        0.7
-      );
-      scrollTl.fromTo(
-        headlineRef.current,
-        { x: 0, opacity: 1 },
-        { x: '-10vw', opacity: 0, ease: 'power2.in' },
-        0.7
-      );
-      scrollTl.fromTo(
-        subheadlineRef.current,
-        { x: 0, opacity: 1 },
-        { x: '-8vw', opacity: 0, ease: 'power2.in' },
-        0.72
-      );
-      scrollTl.fromTo(
-        ctaRef.current,
-        { y: 0, opacity: 1 },
-        { y: '5vh', opacity: 0, ease: 'power2.in' },
-        0.74
-      );
-      scrollTl.fromTo(
-        statsRef.current,
-        { x: 0, opacity: 1 },
-        { x: '10vw', opacity: 0, ease: 'power2.in' },
-        0.7
-      );
-    }, section);
-
-    return () => ctx.revert();
-  }, [isMobile]);
+  const scrollToActiveNode = () => {
+    if (!incubatingNode) return;
+    document.getElementById(`node-${String(incubatingNode.number).padStart(2, '0')}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
 
   return (
-    <section ref={sectionRef} className={`hero-section section-pinned bg-dark overflow-hidden ${className}`}>
+    <section className={`hero-section section-pinned relative min-h-screen overflow-hidden bg-dark ${className}`}>
+      <img
+        src="/satoshi-hub-cinematic-hero.png"
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.34)_100%)]" />
 
-      {/* ── ANIMATED BACKGROUND ── */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Slow-drifting dot grid */}
-        <div className="hero-dot-grid absolute inset-0" />
-        {/* Glowing aurora orbs */}
-        <div className="hero-orb hero-orb-1" />
-        <div className="hero-orb hero-orb-2" />
-        <div className="hero-orb hero-orb-3" />
-        {/* Horizontal scanline sweep */}
-        <div className="hero-scanline" />
-        {/* Bottom horizon glow */}
-        <div className="hero-horizon" />
+      <div className="absolute left-1/2 top-24 z-10 -translate-x-1/2 whitespace-nowrap font-display text-lg font-bold tracking-[0.3em] text-white md:text-2xl">
+        SATOSHI <span className="text-[#f7931a]">HUB</span>
       </div>
 
-      {/* ── COIN + ORBITAL RINGS (centered, single instance) ── */}
-      <div className="hero-visual absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="relative flex items-center justify-center">
-          {/* Outer dashed rotating ring */}
-          <div className="hero-ring hero-ring-outer absolute" />
-          {/* Inner counter-rotating ring */}
-          <div className="hero-ring hero-ring-inner absolute" />
-          {/* Ambient pulse glow */}
-          <div className="hero-coin-glow absolute" />
-          {/* The coin — only once */}
-          <img
-            ref={coinRef}
-            src="/CoinRend_01_200x200.gif"
-            alt="Satoshi Coin"
-            className="relative z-10 w-[220px] h-[220px] md:w-[300px] md:h-[300px] object-contain"
-          />
-        </div>
-      </div>
-
-      {/* ── HEADLINE (top-left) ── */}
-      <div ref={headlineRef} className="hero-headline absolute left-6 lg:left-14 top-[13vh] z-20 max-w-lg">
-        <div className="flex items-center gap-3 mb-5">
-          <span className="w-8 h-[2px] bg-neon inline-block" />
-          <span className="font-mono text-xs tracking-[0.25em] text-neon uppercase">Web3 Ecosystem</span>
-        </div>
-        <h1 className="font-display font-bold text-foreground">
-          <span className="headline-line block text-[clamp(40px,6.5vw,78px)] leading-[0.93] tracking-tight">
-            YOUR
-          </span>
-          <span className="headline-line block text-[clamp(40px,6.5vw,78px)] leading-[0.93] tracking-tight neon-text">
-            CRYPTO
-          </span>
-          <span className="headline-line block text-[clamp(40px,6.5vw,78px)] leading-[0.93] tracking-tight">
-            HUB
-          </span>
-        </h1>
-      </div>
-
-      {/* ── SUBHEADLINE + CTA (bottom-left) ── */}
-      <div className="hero-copy absolute left-6 lg:left-14 bottom-[10vh] z-20 max-w-sm">
-        <p ref={subheadlineRef} className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-7">
-          The hub for digital identity and interoperable applications
-        </p>
-        <div ref={ctaRef}>
-          {incubatingNode?.revealAt ? (
-            <div className="flex flex-col items-start gap-3">
-              <div className="font-mono text-[clamp(16px,2vw,24px)] tracking-wider text-foreground" aria-label="Main incubation countdown">
-                {formatCountdown(incubatingNode.revealAt, now)}
-              </div>
-              <button
-                type="button"
-                onClick={() => document.getElementById(`node-${String(incubatingNode.number).padStart(2, '0')}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
-                className="font-mono text-[10px] tracking-[0.18em] text-neon hover:text-foreground transition-colors uppercase inline-flex items-center gap-2"
-              >
-                {incubatingNode.label} // INCUBATION IN PROGRESS
-                <ArrowRight size={13} />
-              </button>
+      <div className="absolute bottom-[7vh] left-1/2 z-20 flex w-[min(92vw,760px)] -translate-x-1/2 flex-col items-center text-center">
+        {incubatingNode?.revealAt ? (
+          <>
+            <button
+              type="button"
+              onClick={scrollToActiveNode}
+              className="mb-5 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#f7931a] transition-colors hover:text-white md:text-xs"
+            >
+              {incubatingNode.label} <span className="text-white/60">//</span> <span className="text-white">INCUBATION IN PROGRESS</span>
+              <ArrowRight size={13} />
+            </button>
+            <div className="grid w-full grid-cols-4 gap-2" aria-label="Main incubation countdown">
+              {countdown.map((value, index) => (
+                <div key={TIME_LABELS[index]} className="relative">
+                  <div className="font-mono text-[clamp(28px,6vw,68px)] font-bold leading-none tracking-tight text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.8)]">
+                    {value}{index < countdown.length - 1 && <span className="absolute -right-2 text-[#f7931a] md:-right-3">:</span>}
+                  </div>
+                  <div className="mt-3 font-mono text-[8px] tracking-[0.3em] text-white/65 md:text-[10px]">{TIME_LABELS[index]}</div>
+                </div>
+              ))}
             </div>
-          ) : (
-            <span className="font-mono text-xs tracking-[0.18em] text-neon">ALL NODES REVEALED</span>
-          )}
-        </div>
+          </>
+        ) : (
+          <span className="font-mono text-sm tracking-[0.2em] text-[#f7931a]">ALL NODES REVEALED</span>
+        )}
+        <button type="button" onClick={() => document.getElementById('nodes')?.scrollIntoView({ behavior: 'smooth' })} className="mt-8 flex flex-col items-center gap-1 font-mono text-[9px] tracking-[0.25em] text-white/70 hover:text-white">
+          SCROLL
+          <ArrowDown size={17} />
+        </button>
       </div>
-
-      {/* ── STATS (right column) ── */}
-      <div ref={statsRef} className="hero-stats absolute right-6 lg:right-14 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-8 text-right">
-        {STATS.map(({ value, label }) => (
-          <div key={label} className="stat-item">
-            <div className="font-display font-bold text-[clamp(24px,3.2vw,40px)] text-foreground leading-none">
-              {value}
-            </div>
-            <div className="font-mono text-[10px] tracking-widest text-muted-foreground mt-1.5 uppercase">
-              {label}
-            </div>
-          </div>
-        ))}
-      </div>
-
     </section>
   );
 };
