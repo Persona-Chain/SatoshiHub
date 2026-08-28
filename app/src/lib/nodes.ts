@@ -20,7 +20,7 @@ const configuredDays = (nodeNumber: number, fallback: number) => {
 };
 
 const NODE_IDENTITIES: readonly Omit<NodeDefinition, 'incubationDays' | 'revealAt'>[] = [
-  { number: 1, label: 'NODE_01', name: 'EggWallet', descriptor: 'Digital Identity • Wallet', path: '/eggwallet', accent: '#B6FF2E' },
+  { number: 1, label: 'NODE_01', name: 'EggWallet', descriptor: 'Identity and Growth • Wallet', path: '/eggwallet', accent: '#B6FF2E' },
   { number: 2, label: 'NODE_02', name: 'HatchMind', descriptor: 'AI Brain', path: null, accent: '#8FFFC1' },
   { number: 3, label: 'NODE_03', name: 'Hatch Social Incubator', descriptor: 'Connect', path: '/hatch-social', accent: '#2EE8FF' },
   { number: 4, label: 'NODE_04', name: 'Persona Blockchain', descriptor: 'Blockchain', path: '/persona-blockchain', accent: '#FF8B2E' },

@@ -35,14 +35,14 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
           const revealed = status === 'revealed';
           const incubating = status === 'incubating';
           const panel = (
-            <div className="inline-flex min-w-56 flex-col items-center border-y border-white/20 bg-black/35 px-8 py-5 text-center shadow-[0_20px_70px_rgba(0,0,0,0.45)] backdrop-blur-[3px] md:min-w-72">
-              <span className="font-mono text-xs tracking-[0.28em] md:text-sm" style={{ color: revealed || incubating ? node.accent : undefined }}>
+            <div className="relative z-10 inline-flex min-w-[min(90vw,48rem)] flex-col items-center border-y border-white/20 bg-black/35 px-8 py-7 text-center shadow-[0_20px_70px_rgba(0,0,0,0.45)] backdrop-blur-[3px]">
+              <span className="font-display text-[clamp(38px,8vw,92px)] font-bold uppercase leading-none tracking-[-0.035em] text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.85)]" style={{ color: revealed || incubating ? node.accent : undefined }}>
                 {revealed ? node.name.toUpperCase() : node.label}
               </span>
               {revealed ? (
-                <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white/75 md:text-xs">{node.descriptor}</p>
+                <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.28em] text-white/80 md:text-sm">{node.descriptor}</p>
               ) : (
-                <p className={`mt-3 font-mono text-[10px] tracking-[0.3em] md:text-xs ${incubating ? 'text-[#f7931a]' : 'text-white/55'}`}>
+                <p className={`mt-4 font-mono text-[10px] tracking-[0.34em] md:text-sm ${incubating ? 'text-[#f7931a]' : 'text-white/60'}`}>
                   {incubating ? 'INCUBATING' : 'FORMING'}
                 </p>
               )}
@@ -54,8 +54,14 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
               key={node.label}
               id={nodeAnchor(node.number)}
               data-node={node.number}
-              className="min-h-screen flex items-end justify-center px-6 pb-[13vh] pt-28 scroll-mt-20"
+              className="relative min-h-screen flex items-end justify-center overflow-hidden px-6 pb-[13vh] pt-28 scroll-mt-20"
             >
+              <div className={`node-incubator-visual node-incubator-visual-${node.number}`} aria-hidden="true">
+                <span className="node-orbit node-orbit-outer" />
+                <span className="node-orbit node-orbit-middle" />
+                <span className="node-orbit node-orbit-inner" />
+                <span className="node-orbit-core" />
+              </div>
               {revealed && node.path ? <Link to={node.path}>{panel}</Link> : panel}
             </article>
           );
