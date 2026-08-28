@@ -63,7 +63,7 @@ const HomePage = () => {
 
   return (
     <div ref={mainRef} className="relative isolate">
-      <div className="fixed inset-0 -z-10 overflow-hidden bg-dark" aria-hidden="true">
+      <div className="fixed inset-0 z-0 overflow-hidden bg-dark" aria-hidden="true">
         <img
           src="/satoshi-hub-cinematic-hero.png"
           alt=""
