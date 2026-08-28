@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Wallet, MessageCircle, Blocks, TrendingUp, BriefcaseBusiness } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { NODES, getNodeStatus } from '../lib/nodes';
+import { useNodeClock } from '../hooks/use-node-clock';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const now = useNodeClock();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,12 +30,9 @@ const Navigation = () => {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Home', path: '/', icon: null },
-    { name: 'EggWallet', path: '/eggwallet', icon: Wallet },
-    { name: 'Hatch Social', path: '/hatch-social', icon: MessageCircle },
-    { name: 'Persona', path: '/persona-blockchain', icon: Blocks },
-    { name: 'IncubEx', path: '/incubex', icon: TrendingUp },
-    { name: 'BountyBee', path: '/bountybee', icon: BriefcaseBusiness },
+    { name: 'Home', path: '/' },
+    ...NODES.filter((node) => node.path && node.path !== '/' && getNodeStatus(node, now) === 'revealed')
+      .map((node) => ({ name: node.name, path: node.path as string })),
   ];
 
   const isActive = (path: string) => {
@@ -123,7 +123,6 @@ const Navigation = () => {
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {link.icon && <link.icon size={18} />}
               <span className="font-medium">{link.name}</span>
             </Link>
           ))}

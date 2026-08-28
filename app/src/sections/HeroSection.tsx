@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
 import { useIsMobile } from '../hooks/use-mobile';
+import { useNodeClock } from '../hooks/use-node-clock';
+import { formatCountdown, getIncubatingNode } from '../lib/nodes';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +26,8 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const now = useNodeClock();
+  const incubatingNode = getIncubatingNode(now);
 
   // Entrance animation
   useEffect(() => {
@@ -183,14 +187,24 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
         <p ref={subheadlineRef} className="text-base lg:text-lg text-muted-foreground leading-relaxed mb-7">
           The hub for digital identity and interoperable applications
         </p>
-        <div ref={ctaRef} className="flex flex-wrap items-center gap-4">
-          <button className="btn-primary flex items-center gap-2 group">
-            Create Identity
-            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-          </button>
-          <button className="text-foreground hover:text-neon transition-colors text-sm font-medium tracking-wide">
-            Explore Features →
-          </button>
+        <div ref={ctaRef}>
+          {incubatingNode?.revealAt ? (
+            <div className="flex flex-col items-start gap-3">
+              <div className="font-mono text-[clamp(16px,2vw,24px)] tracking-wider text-foreground" aria-label="Main incubation countdown">
+                {formatCountdown(incubatingNode.revealAt, now)}
+              </div>
+              <button
+                type="button"
+                onClick={() => document.getElementById(`node-${String(incubatingNode.number).padStart(2, '0')}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+                className="font-mono text-[10px] tracking-[0.18em] text-neon hover:text-foreground transition-colors uppercase inline-flex items-center gap-2"
+              >
+                {incubatingNode.label} // INCUBATION IN PROGRESS
+                <ArrowRight size={13} />
+              </button>
+            </div>
+          ) : (
+            <span className="font-mono text-xs tracking-[0.18em] text-neon">ALL NODES REVEALED</span>
+          )}
         </div>
       </div>
 

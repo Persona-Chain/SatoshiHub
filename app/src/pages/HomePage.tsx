@@ -3,12 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import HeroSection from '../sections/HeroSection';
 import FeatureSection from '../sections/FeatureSection';
-import WalletSection from '../sections/WalletSection';
-import SocialSection from '../sections/SocialSection';
-import CommunitySection from '../sections/CommunitySection';
-import DashboardSection from '../sections/DashboardSection';
-import NewsSection from '../sections/NewsSection';
-import TradingSection from '../sections/TradingSection';
 import ContactSection from '../sections/ContactSection';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -71,13 +65,7 @@ const HomePage = () => {
     <div ref={mainRef} className="relative">
       <HeroSection className="z-10" />
       <FeatureSection className="z-20" />
-      <WalletSection className="z-30" />
-      <SocialSection className="z-40" />
-      <CommunitySection className="z-50" />
-      <DashboardSection className="z-60" />
-      <NewsSection className="z-70" />
-      <TradingSection className="z-80" />
-      <ContactSection className="z-90" />
+      <ContactSection className="z-30" />
     </div>
   );
 };

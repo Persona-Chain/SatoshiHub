@@ -1,17 +1,15 @@
 import { Link } from 'react-router-dom';
 import { Twitter, Github, MessageCircle, Mail } from 'lucide-react';
+import { NODES, getNodeStatus } from '../lib/nodes';
+import { useNodeClock } from '../hooks/use-node-clock';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const now = useNodeClock();
 
   const footerLinks = {
-    products: [
-      { name: 'EggWallet', path: '/eggwallet' },
-      { name: 'Hatch Social', path: '/hatch-social' },
-      { name: 'Persona Blockchain', path: '/persona-blockchain' },
-      { name: 'IncubEx', path: '/incubex' },
-      { name: 'BountyBee', path: '/bountybee' },
-    ],
+    products: NODES.filter((node) => node.path && node.path !== '/' && getNodeStatus(node, now) === 'revealed')
+      .map((node) => ({ name: node.name, path: node.path as string })),
     company: [
       { name: 'About Us', path: '#' },
       { name: 'Careers', path: '#' },
@@ -72,9 +70,7 @@ const Footer = () => {
 
           {/* Products */}
           <div>
-            <h4 className="font-display font-semibold text-sm uppercase tracking-wider mb-4">
-              Products
-            </h4>
+            <h4 className="font-display font-semibold text-sm uppercase tracking-wider mb-4">Revealed Nodes</h4>
             <ul className="space-y-3">
               {footerLinks.products.map((link) => (
                 <li key={link.name}>
@@ -87,6 +83,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
+            {footerLinks.products.length === 0 && <span className="text-sm text-muted-foreground font-mono">NONE YET</span>}
           </div>
 
           {/* Company */}
