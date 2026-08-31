@@ -9,7 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HomePage = () => {
   const mainRef = useRef<HTMLDivElement>(null);
-  const worldRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (window.matchMedia('(max-width: 767px)').matches) return;
@@ -62,50 +61,14 @@ const HomePage = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const main = mainRef.current;
-    const world = worldRef.current;
-    if (!main || !world || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        world,
-        { yPercent: -2, xPercent: 0 },
-        {
-          yPercent: 2.5,
-          xPercent: 0,
-          ease: 'none',
-          scrollTrigger: { trigger: main, start: 'top top', end: 'bottom bottom', scrub: 2.2 },
-        },
-      );
-    }, main);
-
-    const handlePointerMove = (event: PointerEvent) => {
-      const x = (event.clientX / window.innerWidth - 0.5) * 2;
-      const y = (event.clientY / window.innerHeight - 0.5) * 2;
-      world.style.setProperty('--pointer-x-soft', `${x * -5}px`);
-      world.style.setProperty('--pointer-y-soft', `${y * -3}px`);
-    };
-    const resetPointer = () => {
-      world.style.setProperty('--pointer-x-soft', '0px');
-      world.style.setProperty('--pointer-y-soft', '0px');
-    };
-    window.addEventListener('pointermove', handlePointerMove, { passive: true });
-    document.documentElement.addEventListener('mouseleave', resetPointer);
-
-    return () => {
-      window.removeEventListener('pointermove', handlePointerMove);
-      document.documentElement.removeEventListener('mouseleave', resetPointer);
-      ctx.revert();
-    };
-  }, []);
-
   return (
     <div ref={mainRef} className="relative isolate">
-      <div ref={worldRef} className="fixed inset-[-6%] z-0 overflow-hidden bg-dark" aria-hidden="true">
-        <div className="incubator-pointer-motion absolute inset-0">
-          <div className="incubator-world-motion absolute inset-0">
-            <img src="/satoshi-hub-cinematic-hero.png" alt="" className="absolute inset-0 h-full w-full object-cover object-center" />
+      <div className="fixed inset-0 z-0 flex items-center justify-center overflow-hidden bg-black" aria-hidden="true">
+        <div className="incubator-art-frame">
+          <img src="/satoshi-hub-illustration.webp" alt="" className="absolute inset-0 h-full w-full" />
+          <img src="/satoshi-hub-eggless-plate.png" alt="" className="incubator-egg-removal-plate" />
+          <div className="incubator-egg">
+            <img src="/satoshi-hub-egg.png" alt="" />
           </div>
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/25 to-black/70" />
