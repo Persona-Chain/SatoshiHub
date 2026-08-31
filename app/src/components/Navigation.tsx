@@ -5,19 +5,9 @@ import { NODES, getNodeStatus } from '../lib/nodes';
 import { useNodeClock } from '../hooks/use-node-clock';
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const now = useNodeClock();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     if (!isMobileMenuOpen) return;
@@ -44,11 +34,7 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`site-navigation fixed left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'bg-dark/90 backdrop-blur-xl border-b border-neon/10'
-          : 'bg-transparent'
-      }`}
+      className="site-navigation fixed left-0 right-0 z-50 bg-transparent"
     >
       <div className="px-5 lg:px-12">
         <div className="flex items-center justify-between h-16 lg:h-20">
