@@ -23,7 +23,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/70" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.34)_100%)]" />
 
-      <div className="absolute bottom-[7vh] left-1/2 z-20 flex w-[min(92vw,760px)] -translate-x-1/2 flex-col items-center text-center">
+      <div className="hero-countdown absolute bottom-[7vh] left-1/2 z-20 flex w-[min(92vw,760px)] -translate-x-1/2 flex-col items-center text-center">
         {incubatingNode?.revealAt ? (
           <>
             <button

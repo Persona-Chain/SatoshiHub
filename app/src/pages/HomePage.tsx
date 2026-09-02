@@ -65,7 +65,10 @@ const HomePage = () => {
     <div ref={mainRef} className="relative isolate">
       <div className="fixed inset-0 z-0 flex items-center justify-center overflow-hidden bg-black" aria-hidden="true">
         <div className="incubator-art-frame">
-          <img src="/satoshi-hub-illustration.webp" alt="" className="absolute inset-0 h-full w-full" />
+          <picture className="absolute inset-0">
+            <source media="(max-width: 767px) and (orientation: portrait)" srcSet="/satoshi-hub-cinematic-portrait.png" />
+            <img src="/satoshi-hub-illustration.webp" alt="" className="h-full w-full object-cover" />
+          </picture>
           <img src="/satoshi-hub-eggless-plate.png" alt="" className="incubator-egg-removal-plate" />
           <div className="incubator-egg">
             <img src="/satoshi-hub-egg.png" alt="" />
