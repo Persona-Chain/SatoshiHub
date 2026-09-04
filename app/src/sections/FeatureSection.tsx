@@ -7,13 +7,6 @@ interface FeatureSectionProps { className?: string }
 
 const nodeAnchor = (number: number) => `node-${String(number).padStart(2, '0')}`;
 
-const ResponsiveNodeScene = () => (
-  <picture className="absolute inset-0">
-    <source media="(max-width: 767px) and (orientation: portrait)" srcSet="/satoshi-hub-cinematic-portrait.png" />
-    <img src="/satoshi-hub-cinematic-hero.png" alt="" className="h-full w-full object-cover object-center" />
-  </picture>
-);
-
 const NODE_ONE_STAGES = [
   { label: 'Growth', image: '/growth.png' },
   { label: 'Evolution', image: '/evolution.png' },
@@ -91,7 +84,6 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                 data-node={node.number}
                 className={`node-one node-status-${status} relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-12 pt-[calc(var(--app-chrome-height)+2rem)] md:px-16`}
               >
-                <ResponsiveNodeScene />
                 <div className="node-one-shade absolute inset-0" />
 
                 <div className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center">
@@ -135,7 +127,6 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                 data-node={node.number}
                 className={`node-two node-status-${status} relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-10 pt-[calc(var(--app-chrome-height)+2rem)] md:px-16`}
               >
-                <ResponsiveNodeScene />
                 <div className="node-two-shade absolute inset-0" />
 
                 <div className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center">
@@ -177,7 +168,6 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                 data-node={node.number}
                 className={`node-three node-status-${status} relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-10 pt-[calc(var(--app-chrome-height)+2rem)] md:px-16`}
               >
-                <ResponsiveNodeScene />
                 <div className="node-three-shade absolute inset-0" />
 
                 <div className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center">
@@ -219,7 +209,6 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                 data-node={node.number}
                 className={`node-four node-status-${status} relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-10 pt-[calc(var(--app-chrome-height)+2rem)] md:px-16`}
               >
-                <ResponsiveNodeScene />
                 <div className="node-four-shade absolute inset-0" />
 
                 <div className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center">
@@ -261,7 +250,6 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                 data-node={node.number}
                 className={`node-five node-status-${status} relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-10 pt-[calc(var(--app-chrome-height)+2rem)] md:px-16`}
               >
-                <ResponsiveNodeScene />
                 <div className="node-five-shade absolute inset-0" />
 
                 <div className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center">
@@ -302,7 +290,6 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                 data-node={node.number}
                 className={`node-six node-status-${status} relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-10 pt-[calc(var(--app-chrome-height)+2rem)] md:px-16`}
               >
-                <ResponsiveNodeScene />
                 <div className="node-six-shade absolute inset-0" />
 
                 <div className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center">
@@ -343,7 +330,6 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                 data-node={node.number}
                 className={`node-seven node-status-${status} relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-10 pt-[calc(var(--app-chrome-height)+2rem)] md:px-16`}
               >
-                <ResponsiveNodeScene />
                 <div className="node-seven-shade absolute inset-0" />
 
                 <div className="relative z-10 flex w-full max-w-5xl flex-col items-center text-center">
