@@ -20,7 +20,6 @@ const Navigation = () => {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
     ...NODES.filter((node) => node.path && node.path !== '/' && getNodeStatus(node, now) === 'revealed')
       .map((node) => ({ name: node.name, path: node.path as string })),
   ];
