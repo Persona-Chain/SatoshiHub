@@ -41,7 +41,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <div className="relative w-10 h-10 flex items-center justify-center">
-              <img src="/fav.jpg" alt="Satoshi Hub Logo" className="w-10 h-10 rounded-sm object-cover" />
+              <img src="/fav1.png" alt="Satoshi Hub Logo" className="w-10 h-10 rounded-sm object-cover" />
             </div>
             <span className="font-display font-bold text-lg tracking-tight text-foreground hidden sm:block">
               SATOSHI<span className="text-neon">HUB</span>
