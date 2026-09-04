@@ -1479,4 +1479,71 @@
     border-top: 0;
     border-left: 1px solid rgba(255, 255, 255, 0.3);
   }
+
+  .node-one > .relative {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 1 auto;
+    transform: none;
+  }
+
+  .node-one h2 {
+    font-size: clamp(2.8rem, 15vw, 4.4rem);
+  }
+
+  .node-one h2 + p {
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+  }
+
+  .node-one .node-stage-grid {
+    width: 100%;
+    max-width: 22rem;
+  }
+
+  .node-one-stage {
+    padding-inline: 0.2rem;
+  }
+
+  .contact-section {
+    min-height: auto;
+    padding-top: calc(var(--app-chrome-height) + 1rem);
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+
+  .contact-section .grid.lg\:grid-cols-2 {
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-section h2 {
+    margin-bottom: 0.75rem;
+    font-size: 2rem;
+  }
+
+  .contact-section h2 + p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .contact-section .glass-card {
+    padding: 1.25rem;
+  }
+
+  .contact-section .glass-card h3 {
+    margin-bottom: 1rem;
+  }
+
+  .contact-section .space-y-4 {
+    margin-bottom: 1rem;
+  }
+
+  .contact-section .border-t {
+    padding-top: 2rem;
+  }
+
+  .contact-section .border-t h3,
+  .contact-section .border-t p {
+    margin-bottom: 1rem;
+  }
 }
