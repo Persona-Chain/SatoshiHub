@@ -15,6 +15,9 @@ const ContactSection = ({ className = '' }: ContactSectionProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const newsletterRef = useRef<HTMLDivElement>(null);
   const [email, setEmail] = useState('');
+  const [subscriptionStatus, setSubscriptionStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const discordUrl = 'https://discord.gg/mwEA3BaXk3';
 
   useLayoutEffect(() => {
     const section = sectionRef.current;
@@ -78,10 +81,24 @@ const ContactSection = ({ className = '' }: ContactSectionProps) => {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you for subscribing!');
-    setEmail('');
+    setSubscriptionStatus('submitting');
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) throw new Error('Subscription failed');
+
+      setEmail('');
+      setSubscriptionStatus('success');
+    } catch {
+      setSubscriptionStatus('error');
+    }
   };
 
   return (
@@ -125,7 +142,7 @@ const ContactSection = ({ className = '' }: ContactSectionProps) => {
                 
                 <div className="space-y-4 mb-8">
                   <a
-                    href="mailto:support@satoshiHub.com"
+                    href="mailto:abuse@personablockchain.com"
                     className="flex items-center gap-4 p-4 bg-white/5 rounded-sm hover:bg-white/10 transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-full bg-neon/20 flex items-center justify-center">
@@ -134,14 +151,16 @@ const ContactSection = ({ className = '' }: ContactSectionProps) => {
                     <div className="flex-1">
                       <p className="text-sm text-muted-foreground">Email us</p>
                       <p className="text-foreground group-hover:text-neon transition-colors">
-                        support@satoshiHub.com
+                        abuse@personablockchain.com
                       </p>
                     </div>
                     <ArrowRight size={18} className="text-muted-foreground group-hover:text-neon group-hover:translate-x-1 transition-all" />
                   </a>
                   
                   <a
-                    href="#"
+                    href={discordUrl}
+                    target="_blank"
+                    rel="noreferrer"
                     className="flex items-center gap-4 p-4 bg-white/5 rounded-sm hover:bg-white/10 transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-full bg-neon/20 flex items-center justify-center">
@@ -157,10 +176,15 @@ const ContactSection = ({ className = '' }: ContactSectionProps) => {
                   </a>
                 </div>
 
-                <button className="w-full btn-primary flex items-center justify-center gap-2">
+                <a
+                  href={discordUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full btn-primary flex items-center justify-center gap-2"
+                >
                   Contact Support
                   <Send size={16} />
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -186,11 +210,20 @@ const ContactSection = ({ className = '' }: ContactSectionProps) => {
                   placeholder="Enter your email"
                   className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-neon transition-colors"
                   required
+                  disabled={subscriptionStatus === 'submitting'}
                 />
-                <button type="submit" className="btn-primary whitespace-nowrap">
-                  Subscribe
+                <button type="submit" className="btn-primary whitespace-nowrap" disabled={subscriptionStatus === 'submitting'}>
+                  {subscriptionStatus === 'submitting' ? 'Subscribing…' : 'Subscribe'}
                 </button>
               </form>
+              <p className="mt-4 min-h-5 text-sm" role="status" aria-live="polite">
+                {subscriptionStatus === 'success' && (
+                  <span className="text-neon">You're subscribed. Welcome to the Hub.</span>
+                )}
+                {subscriptionStatus === 'error' && (
+                  <span className="text-red-400">We couldn't save your email. Please try again.</span>
+                )}
+              </p>
             </div>
           </div>
         </div>

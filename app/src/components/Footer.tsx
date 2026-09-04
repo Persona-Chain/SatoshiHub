@@ -32,8 +32,8 @@ const Footer = () => {
   const socialLinks = [
     { icon: Twitter, href: '#', label: 'Twitter' },
     { icon: Github, href: '#', label: 'GitHub' },
-    { icon: MessageCircle, href: '#', label: 'Discord' },
-    { icon: Mail, href: '#', label: 'Email' },
+    { icon: MessageCircle, href: 'https://discord.gg/mwEA3BaXk3', label: 'Discord' },
+    { icon: Mail, href: 'mailto:abuse@personablockchain.com', label: 'Email' },
   ];
 
   return (
@@ -59,6 +59,8 @@ const Footer = () => {
                 <a
                   key={social.label}
                   href={social.href}
+                  target={social.href.startsWith('http') ? '_blank' : undefined}
+                  rel={social.href.startsWith('http') ? 'noreferrer' : undefined}
                   className="w-10 h-10 flex items-center justify-center rounded-sm bg-white/5 text-muted-foreground hover:bg-neon/10 hover:text-neon transition-colors"
                   aria-label={social.label}
                 >
