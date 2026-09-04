@@ -1398,3 +1398,66 @@
     padding: 1.5rem;
   }
 }
+
+/* Keep the desktop incubator composition on portrait phones, scaled to fit. */
+@media (max-width: 767px) and (orientation: portrait) {
+  .incubator-art-frame {
+    width: 100vw;
+    height: 56.25vw;
+  }
+
+  .incubator-art-frame > .incubator-egg-removal-plate,
+  .incubator-art-frame > .incubator-egg {
+    display: block;
+  }
+
+  .incubator-art-frame picture img {
+    object-fit: fill;
+    object-position: center;
+  }
+
+  .section-pinned.hero-section {
+    min-height: 100svh;
+  }
+
+  .node-one,
+  .node-two,
+  .node-three,
+  .node-four,
+  .node-five,
+  .node-six,
+  .node-seven {
+    height: 100svh;
+    min-height: 100svh;
+    padding: 0 3.5rem;
+  }
+
+  .node-one > .relative,
+  .node-two > .relative,
+  .node-three > .relative,
+  .node-four > .relative,
+  .node-five > .relative,
+  .node-six > .relative,
+  .node-seven > .relative {
+    width: 760px;
+    max-width: none;
+    flex: 0 0 760px;
+    transform: scale(calc((100vw - 4.5rem) / 760));
+  }
+
+  .node-stage-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    max-width: 38rem;
+    gap: 0;
+  }
+
+  .node-stage-grid img {
+    max-height: none;
+  }
+
+  .node-one-stage + .node-one-stage {
+    border-top: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}

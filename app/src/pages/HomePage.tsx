@@ -66,7 +66,6 @@ const HomePage = () => {
       <div className="fixed inset-0 z-0 flex items-center justify-center overflow-hidden bg-black" aria-hidden="true">
         <div className="incubator-art-frame">
           <picture className="absolute inset-0">
-            <source media="(max-width: 767px) and (orientation: portrait)" srcSet="/satoshi-hub-cinematic-portrait.png" />
             <img src="/satoshi-hub-illustration.webp" alt="" className="h-full w-full object-cover" />
           </picture>
           <img src="/satoshi-hub-eggless-plate.png" alt="" className="incubator-egg-removal-plate" />

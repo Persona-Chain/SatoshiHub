@@ -64,6 +64,10 @@ html {
     height: auto;
     min-height: 0;
   }
+
+  .section-pinned.hero-section {
+    min-height: 100svh;
+  }
   
   .neon-border {
     width: 85vw !important;
