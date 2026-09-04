@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "newsletter": "node server/newsletter.mjs"
+    "newsletter": "node server/newsletter.mjs",
+    "serve": "node server/newsletter.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
