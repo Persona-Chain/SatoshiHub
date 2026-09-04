@@ -48,7 +48,7 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
         ) : (
           <span className="font-mono text-sm tracking-[0.2em] text-[#f7931a]">ALL NODES REVEALED</span>
         )}
-        <button type="button" onClick={() => document.getElementById('nodes')?.scrollIntoView({ behavior: 'smooth' })} className="mt-8 flex flex-col items-center gap-1 font-mono text-[9px] tracking-[0.25em] text-white/70 hover:text-white">
+        <button type="button" onClick={scrollToActiveNode} className="mt-8 flex flex-col items-center gap-1 font-mono text-[9px] tracking-[0.25em] text-white/70 hover:text-white">
           SCROLL
           <ArrowDown size={17} />
         </button>

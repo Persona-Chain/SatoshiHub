@@ -8,11 +8,8 @@ const ScrollToTop = () => {
   useLayoutEffect(() => {
     window.history.scrollRestoration = 'manual';
 
-    const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
-    const isPageRefresh = isFirstRender.current && navigation?.type === 'reload';
-    isFirstRender.current = false;
-
-    if (isPageRefresh) {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       return;
     }
