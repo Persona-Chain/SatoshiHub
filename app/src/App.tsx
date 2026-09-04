@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DevelopmentBanner from './components/DevelopmentBanner';
 import Navigation from './components/Navigation';
-import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import NodeGate from './components/NodeGate';
 import HomePage from './pages/HomePage';
@@ -29,7 +28,6 @@ function App() {
             <Route path="/bountybee" element={<NodeGate><BountyBeePage /></NodeGate>} />
           </Routes>
         </main>
-        <Footer />
         <div className="grain-overlay" />
       </div>
     </Router>
