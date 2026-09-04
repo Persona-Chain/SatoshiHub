@@ -142,7 +142,7 @@ const ContactSection = ({ className = '' }: ContactSectionProps) => {
                 
                 <div className="space-y-4 mb-8">
                   <a
-                    href="mailto:abuse@personablockchain.com"
+                    href="mailto:Contact@SatoshisHub.com"
                     className="flex items-center gap-4 p-4 bg-white/5 rounded-sm hover:bg-white/10 transition-colors group"
                   >
                     <div className="w-10 h-10 rounded-full bg-neon/20 flex items-center justify-center">
@@ -151,7 +151,7 @@ const ContactSection = ({ className = '' }: ContactSectionProps) => {
                     <div className="flex-1">
                       <p className="text-sm text-muted-foreground">Email us</p>
                       <p className="text-foreground group-hover:text-neon transition-colors">
-                        abuse@personablockchain.com
+                        Contact@SatoshisHub.com
                       </p>
                     </div>
                     <ArrowRight size={18} className="text-muted-foreground group-hover:text-neon group-hover:translate-x-1 transition-all" />

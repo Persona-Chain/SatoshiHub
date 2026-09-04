@@ -33,7 +33,7 @@ const Footer = () => {
     { icon: Twitter, href: '#', label: 'Twitter' },
     { icon: Github, href: '#', label: 'GitHub' },
     { icon: MessageCircle, href: 'https://discord.gg/mwEA3BaXk3', label: 'Discord' },
-    { icon: Mail, href: 'mailto:abuse@personablockchain.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:Contact@SatoshisHub.com', label: 'Email' },
   ];
 
   return (

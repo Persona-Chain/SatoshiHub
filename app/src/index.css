@@ -1402,8 +1402,8 @@
 /* Keep the desktop incubator composition on portrait phones, scaled to fit. */
 @media (max-width: 767px) and (orientation: portrait) {
   .incubator-art-frame {
-    width: 100vw;
-    height: 56.25vw;
+    width: max(100vw, 177.778svh);
+    height: max(56.25vw, 100svh);
   }
 
   .incubator-art-frame > .incubator-egg-removal-plate,
@@ -1421,24 +1421,22 @@
   }
 
   .hero-countdown {
-    bottom: calc(50% - 28.125vw + 1.5vw);
-    width: 760px;
-    max-width: none;
-    transform: translateX(-50%) scale(calc((100vw - 1rem) / 760));
-    transform-origin: center bottom;
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    width: calc(100% - 2rem);
+    max-width: 760px;
+    transform: translateX(-50%);
   }
 
   .hero-countdown > button:first-of-type {
-    min-height: 0;
-    margin-bottom: 1.25rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.22em;
+    min-height: 44px;
+    margin-bottom: 0.75rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
   }
 
   .hero-countdown > button:last-of-type {
-    min-height: 0;
-    margin-top: 2rem;
-    font-size: 0.5625rem;
+    min-height: 44px;
+    margin-top: 1rem;
   }
 
   .node-one,
