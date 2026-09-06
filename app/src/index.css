@@ -1402,18 +1402,30 @@
 /* Keep the desktop incubator composition on portrait phones, scaled to fit. */
 @media (max-width: 767px) and (orientation: portrait) {
   .incubator-art-frame {
-    width: max(100vw, 177.778svh);
-    height: max(56.25vw, 100svh);
+    width: 100vw;
+    height: 100svh;
   }
 
-  .incubator-art-frame > .incubator-egg-removal-plate,
+  .incubator-art-frame > .incubator-egg-removal-plate {
+    display: none;
+  }
+
   .incubator-art-frame > .incubator-egg {
     display: block;
+    left: 52%;
+    top: 23%;
+    width: 24vw;
+    height: auto;
   }
 
   .incubator-art-frame picture img {
-    object-fit: fill;
+    object-fit: cover;
     object-position: center;
+  }
+
+  .incubator-egg img {
+    height: auto;
+    object-fit: contain;
   }
 
   .section-pinned.hero-section {
