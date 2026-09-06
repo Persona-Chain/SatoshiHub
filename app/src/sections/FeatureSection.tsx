@@ -90,6 +90,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                   <h2 className="font-display text-[clamp(3.6rem,8vw,7.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-[#aefe18] drop-shadow-[0_5px_24px_rgba(0,0,0,0.8)]">
                     {revealed ? node.name : node.label}
                   </h2>
+                  {revealed && <>
                   <p className="mt-6 font-mono text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.34em] text-white drop-shadow-[0_2px_8px_black]">
                     Wallet <span className="text-[#aefe18]">·</span> Identity <span className="text-[#aefe18]">·</span> Growth
                   </p>
@@ -109,6 +110,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                       </div>
                     ))}
                   </div>
+                  </>}
 
                   <div className="node-one-status mt-4 flex w-full max-w-[34rem] items-center gap-5 font-mono text-[0.68rem] uppercase tracking-[0.48em] text-[#f7a21a] md:text-sm">
                     <span className="h-px flex-1" />
@@ -133,6 +135,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                   <h2 className="font-display text-[clamp(3.6rem,8vw,7.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-[#aefe18] drop-shadow-[0_5px_24px_rgba(0,0,0,0.8)]">
                     {revealed ? node.name : node.label}
                   </h2>
+                  {revealed && <>
                   <p className="mt-6 font-mono text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.34em] text-white drop-shadow-[0_2px_8px_black]">
                     Create <span className="text-[#aefe18]">·</span> Build <span className="text-[#aefe18]">·</span> Market
                   </p>
@@ -150,6 +153,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                       </div>
                     ))}
                   </div>
+                  </>}
 
                   <div className="node-one-status mt-5 flex w-full max-w-[34rem] items-center gap-5 font-mono text-[0.68rem] uppercase tracking-[0.48em] text-[#f7a21a] md:text-sm">
                     <span className="h-px flex-1" />
@@ -174,6 +178,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                   <h2 className="font-display text-[clamp(3.6rem,8vw,7.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-[#aefe18] drop-shadow-[0_5px_24px_rgba(0,0,0,0.8)]">
                     {revealed ? node.name : node.label}
                   </h2>
+                  {revealed && <>
                   <p className="mt-6 font-mono text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.34em] text-white drop-shadow-[0_2px_8px_black]">
                     Create <span className="text-[#aefe18]">·</span> Own <span className="text-[#aefe18]">·</span> Unite
                   </p>
@@ -191,6 +196,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                       </div>
                     ))}
                   </div>
+                  </>}
 
                   <div className="node-one-status mt-5 flex w-full max-w-[34rem] items-center gap-5 font-mono text-[0.68rem] uppercase tracking-[0.48em] text-[#f7a21a] md:text-sm">
                     <span className="h-px flex-1" />
@@ -215,6 +221,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                   <h2 className="font-display text-[clamp(3.6rem,8vw,7.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-[#aefe18] drop-shadow-[0_5px_24px_rgba(0,0,0,0.8)]">
                     {revealed ? node.name : node.label}
                   </h2>
+                  {revealed && <>
                   <p className="mt-6 font-mono text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.34em] text-white drop-shadow-[0_2px_8px_black]">
                     One Persona <span className="text-[#aefe18]">·</span> Any World<span className="text-[#aefe18]">.</span>
                   </p>
@@ -232,6 +239,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                       </div>
                     ))}
                   </div>
+                  </>}
 
                   <div className="node-one-status mt-5 flex w-full max-w-[34rem] items-center gap-5 font-mono text-[0.68rem] uppercase tracking-[0.48em] text-[#f7a21a] md:text-sm">
                     <span className="h-px flex-1" />
@@ -256,6 +264,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                   <h2 className="font-display text-[clamp(3.6rem,8vw,7.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-[#aefe18] drop-shadow-[0_5px_24px_rgba(0,0,0,0.8)]">
                     {revealed ? node.name : node.label}
                   </h2>
+                  {revealed && <>
                   <p className="mt-6 font-mono text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.34em] text-white drop-shadow-[0_2px_8px_black]">
                     Trade <span className="text-[#aefe18]">·</span> Swap <span className="text-[#aefe18]">·</span> Liquidity
                   </p>
@@ -272,6 +281,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                       </div>
                     ))}
                   </div>
+                  </>}
 
                   <div className="node-one-status mt-5 flex w-full max-w-[34rem] items-center gap-5 font-mono text-[0.68rem] uppercase tracking-[0.48em] text-[#f7a21a] md:text-sm">
                     <span className="h-px flex-1" />
@@ -296,6 +306,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                   <h2 className="font-display text-[clamp(3.6rem,8vw,7.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-[#aefe18] drop-shadow-[0_5px_24px_rgba(0,0,0,0.8)]">
                     {revealed ? node.name : node.label}
                   </h2>
+                  {revealed && <>
                   <p className="mt-6 font-mono text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.34em] text-white drop-shadow-[0_2px_8px_black]">
                     Reward <span className="text-[#aefe18]">·</span> Engage <span className="text-[#aefe18]">·</span> Earn
                   </p>
@@ -312,6 +323,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                       </div>
                     ))}
                   </div>
+                  </>}
 
                   <div className="node-one-status mt-5 flex w-full max-w-[34rem] items-center gap-5 font-mono text-[0.68rem] uppercase tracking-[0.48em] text-[#f7a21a] md:text-sm">
                     <span className="h-px flex-1" />
@@ -336,6 +348,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                   <h2 className="font-display text-[clamp(3.6rem,8vw,7.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-[#aefe18] drop-shadow-[0_5px_24px_rgba(0,0,0,0.8)]">
                     {revealed ? node.name : node.label}
                   </h2>
+                  {revealed && <>
                   <p className="mt-6 font-mono text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.34em] text-white drop-shadow-[0_2px_8px_black]">
                     Build <span className="text-[#aefe18]">·</span> Showcase <span className="text-[#aefe18]">·</span> Emerge
                   </p>
@@ -353,6 +366,7 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                       </div>
                     ))}
                   </div>
+                  </>}
 
                   <div className="node-one-status mt-5 flex w-full max-w-[38rem] items-center gap-5 font-mono text-[0.68rem] uppercase tracking-[0.48em] text-[#f7a21a] md:text-sm">
                     <span className="h-px flex-1" />
