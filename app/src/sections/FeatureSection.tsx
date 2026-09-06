@@ -6,6 +6,7 @@ import { useNodeClock } from '../hooks/use-node-clock';
 interface FeatureSectionProps { className?: string }
 
 const nodeAnchor = (number: number) => `node-${String(number).padStart(2, '0')}`;
+const nodeClass = (number: number) => ['node-one', 'node-two', 'node-three', 'node-four', 'node-five', 'node-six', 'node-seven'][number - 1];
 
 const NODE_ONE_STAGES = [
   { label: 'Growth', image: '/growth.png' },
@@ -76,6 +77,36 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
           const status = getNodeStatus(node, now);
           const revealed = status === 'revealed';
           const incubating = status === 'incubating';
+
+          if (node.number > 1 && !revealed) {
+            return (
+              <article
+                key={node.label}
+                id={nodeAnchor(node.number)}
+                data-node={node.number}
+                className={`${nodeClass(node.number)} node-status-${status} relative flex min-h-screen items-center justify-center overflow-hidden px-5 pb-10 pt-[calc(var(--app-chrome-height)+2rem)] md:px-16`}
+              >
+                <div className={`${nodeClass(node.number)}-shade absolute inset-0`} />
+                <div className={`node-incubator-visual node-incubator-visual-${node.number}`} aria-hidden="true">
+                  <span className="node-orbit node-orbit-outer" />
+                  <span className="node-orbit node-orbit-middle" />
+                  <span className="node-orbit node-orbit-inner" />
+                  <span className="node-orbit-core" />
+                </div>
+                <div className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center">
+                  <h2 className="font-display text-[clamp(3.6rem,8vw,7.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-[#aefe18] drop-shadow-[0_5px_24px_rgba(0,0,0,0.8)]">
+                    {node.label}
+                  </h2>
+                  <div className="node-one-status mt-5 flex w-full max-w-[34rem] items-center gap-5 font-mono text-[0.68rem] uppercase tracking-[0.48em] text-[#f7a21a] md:text-sm">
+                    <span className="h-px flex-1" />
+                    <strong className="font-medium">{incubating ? 'Incubating' : 'Forming'}</strong>
+                    <span className="h-px flex-1" />
+                  </div>
+                </div>
+              </article>
+            );
+          }
+
           if (node.number === 1) {
             return (
               <article
@@ -90,7 +121,6 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                   <h2 className="font-display text-[clamp(3.6rem,8vw,7.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-[#aefe18] drop-shadow-[0_5px_24px_rgba(0,0,0,0.8)]">
                     {revealed ? node.name : node.label}
                   </h2>
-                  {revealed && <>
                   <p className="mt-6 font-mono text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.34em] text-white drop-shadow-[0_2px_8px_black]">
                     Wallet <span className="text-[#aefe18]">·</span> Identity <span className="text-[#aefe18]">·</span> Growth
                   </p>
@@ -110,7 +140,6 @@ const FeatureSection = ({ className = '' }: FeatureSectionProps) => {
                       </div>
                     ))}
                   </div>
-                  </>}
 
                   <div className="node-one-status mt-4 flex w-full max-w-[34rem] items-center gap-5 font-mono text-[0.68rem] uppercase tracking-[0.48em] text-[#f7a21a] md:text-sm">
                     <span className="h-px flex-1" />
