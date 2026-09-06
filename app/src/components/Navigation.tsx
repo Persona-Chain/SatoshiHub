@@ -8,6 +8,11 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const now = useNodeClock();
+  const launchAvailable = getNodeStatus(NODES[0], now) === 'revealed';
+
+  const launchApp = () => {
+    if (launchAvailable) window.location.assign('http://167.86.82.182:8000/');
+  };
 
   useEffect(() => {
     if (!isMobileMenuOpen) return;
@@ -69,7 +74,13 @@ const Navigation = () => {
 
           {/* CTA Button */}
           <div className="hidden xl:block">
-            <button className="btn-outline text-sm py-2.5 px-5">
+            <button
+              type="button"
+              onClick={launchApp}
+              disabled={!launchAvailable}
+              title={launchAvailable ? 'Launch EggWallet' : 'Available when Node 1 incubation completes'}
+              className="btn-outline text-sm py-2.5 px-5 disabled:cursor-not-allowed disabled:opacity-50"
+            >
               Launch App
             </button>
           </div>
@@ -111,7 +122,15 @@ const Navigation = () => {
               <span className="font-medium">{link.name}</span>
             </Link>
           ))}
-          <button className="w-full btn-primary mt-4">Launch App</button>
+          <button
+            type="button"
+            onClick={launchApp}
+            disabled={!launchAvailable}
+            title={launchAvailable ? 'Launch EggWallet' : 'Available when Node 1 incubation completes'}
+            className="w-full btn-primary mt-4 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Launch App
+          </button>
         </div>
       </div>
     </nav>
