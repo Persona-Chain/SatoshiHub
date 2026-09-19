@@ -30,8 +30,8 @@ const NODE_IDENTITIES: readonly Omit<NodeDefinition, 'incubationDays' | 'revealA
 ] as const;
 
 const DEFAULT_DURATIONS = [60, 45, 30, 30, 30, 30, 30] as const;
-const defaultCampaignStart = Date.parse('2026-08-28T00:00:00Z');
-const configuredCampaignStart = Date.parse(configuredValue('VITE_CAMPAIGN_START_AT', '2026-08-28T00:00:00Z'));
+const defaultCampaignStart = Date.parse('2026-09-06T14:06:33Z');
+const configuredCampaignStart = Date.parse(configuredValue('VITE_CAMPAIGN_START_AT', '2026-09-06T14:06:33Z'));
 const campaignStart = Number.isFinite(configuredCampaignStart) ? configuredCampaignStart : defaultCampaignStart;
 let elapsedDays = 0;
 
