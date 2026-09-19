@@ -1,7 +1,7 @@
 import { useRef, useLayoutEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Send, Mail, MessageCircle, ArrowRight } from 'lucide-react';
+import { Send, MessageCircle, ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -136,27 +136,7 @@ const ContactSection = ({ className = '' }: ContactSectionProps) => {
             {/* Contact Card */}
             <div ref={cardRef} className="lg:mt-12">
               <div className="glass-card rounded-sm p-8 lg:p-10">
-                <h3 className="font-display font-semibold text-xl text-foreground mb-6">
-                  Get in Touch
-                </h3>
-                
                 <div className="space-y-4 mb-8">
-                  <a
-                    href="mailto:Contact@SatoshisHub.com"
-                    className="flex items-center gap-4 p-4 bg-white/5 rounded-sm hover:bg-white/10 transition-colors group"
-                  >
-                    <div className="w-10 h-10 rounded-full bg-neon/20 flex items-center justify-center">
-                      <Mail size={18} className="text-neon" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm text-muted-foreground">Email us</p>
-                      <p className="text-foreground group-hover:text-neon transition-colors">
-                        Contact@SatoshisHub.com
-                      </p>
-                    </div>
-                    <ArrowRight size={18} className="text-muted-foreground group-hover:text-neon group-hover:translate-x-1 transition-all" />
-                  </a>
-                  
                   <a
                     href={discordUrl}
                     target="_blank"
