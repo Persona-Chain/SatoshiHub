@@ -30,8 +30,9 @@ const NODE_IDENTITIES: readonly Omit<NodeDefinition, 'incubationDays' | 'revealA
 ] as const;
 
 const DEFAULT_DURATIONS = [60, 45, 30, 30, 30, 30, 30] as const;
-const defaultCampaignStart = Date.parse('2026-09-07T14:06:33Z');
-const configuredCampaignStart = Date.parse(configuredValue('VITE_CAMPAIGN_START_AT', '2026-09-07T14:06:33Z'));
+// Node 1's 60-day incubation ends November 27, 2026 at 6 PM PST.
+const defaultCampaignStart = Date.parse('2026-09-29T02:00:00Z');
+const configuredCampaignStart = Date.parse(configuredValue('VITE_CAMPAIGN_START_AT', '2026-09-29T02:00:00Z'));
 const campaignStart = Number.isFinite(configuredCampaignStart) ? configuredCampaignStart : defaultCampaignStart;
 let elapsedDays = 0;
 

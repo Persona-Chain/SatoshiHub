@@ -44,6 +44,13 @@ const HeroSection = ({ className = '' }: HeroSectionProps) => {
                 </div>
               ))}
             </div>
+            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-white/70 md:text-xs">
+              {new Intl.DateTimeFormat('en-US', {
+                timeZone: 'America/Los_Angeles',
+                month: 'long', day: 'numeric', year: 'numeric',
+                hour: 'numeric', minute: '2-digit', timeZoneName: 'short',
+              }).format(new Date(incubatingNode.revealAt))}
+            </p>
           </>
         ) : (
           <span className="font-mono text-sm tracking-[0.2em] text-[#f7931a]">ALL NODES REVEALED</span>
